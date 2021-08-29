@@ -6,13 +6,8 @@ In this paper, we propose a novel local descriptor-based framework, called You O
 
 - 2021.7.6 The code of the PointNet backbone YOHO is released.
 
-## Performance and efficiency
-
-|   Performance           | Time Consuming |
-
-|:----------------------------:|:------------------:|
-
-| <img src="README.assets/sendpix1.jpg" alt="sendpix1" style="zoom:50%;" />   | ![sendpix2](README.assets/sendpix2-1625383653363.jpg) |
+## Performance 
+<img src="README.assets/sendpix1.jpg" alt="sendpix1" style="zoom:50%;" />   
 
 ## Requirements
 
