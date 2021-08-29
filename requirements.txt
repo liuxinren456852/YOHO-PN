@@ -1,0 +1,11 @@
+numpy
+pytorch #we suggest the installation of the official website
+scipy
+matplotlib
+future-fstrings
+easydict
+joblib
+scikit-learn
+nibabel
+tqdm
+open3d==0.8.0.0
