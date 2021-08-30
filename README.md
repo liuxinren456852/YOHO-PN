@@ -4,7 +4,7 @@ In this paper, we propose a novel local descriptor-based framework, called You O
 
 ## News
 
-- 2021.7.6 The code of the PointNet backbone YOHO is released.
+- 2021.7.6 The code of the YOHO is released. [Code](https://github.com/HpWang-whu/YOHO)
 
 ## Performance 
 <img src="README.assets/sendpix1.jpg" alt="sendpix1" style="zoom:50%;" />   
