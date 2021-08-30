@@ -1,5 +1,6 @@
 import torch.utils.data as Data
-import os
+import os,sys
+sys.path.append('../')
 import random
 import glob
 import pickle

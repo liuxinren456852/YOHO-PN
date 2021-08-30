@@ -193,5 +193,6 @@ name2loss={
 }
 
 name2val={
+    'Val_partI':Validation_PartI,
     'Val_partII':Validation_PartII
 }

@@ -4,7 +4,6 @@ import numpy as np
 import torch.nn as nn
 from collections import OrderedDict
 from tensorboardX import SummaryWriter
-from sklearn.decomposition import pca
 from utils.r_eval import compute_R_diff
 
 def make_non_exists_dir(fn):
@@ -46,7 +45,7 @@ def transform_points(pts,transform):
         return hpoints_to_points(points_to_hpoints(pts) @ transform.T)
     else: raise NotImplementedError
 
-def random_rotation_matrix():
+def random_rotation_matrix(thre=180):
     """
     Generates a random 3D rotation matrix from axis and angle.
 
@@ -59,7 +58,7 @@ def random_rotation_matrix():
     rng = np.random.RandomState()
     axis = rng.rand(3) - 0.5
     axis /= np.linalg.norm(axis) + 1E-8
-    theta = np.pi * rng.uniform(0.0, 1.0)
+    theta = (np.pi*thre/180.0) * rng.uniform(0.0, 1.0)
     thetas=axis*theta
     alpha=thetas[0]
     beta=thetas[1]

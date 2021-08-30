@@ -1,4 +1,5 @@
-import os
+import os,sys
+sys.path.append('../')
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 import time
@@ -7,7 +8,6 @@ import torch
 import shutil
 from tqdm import tqdm
 import torch.nn as nn
-import sys
 import glob
 
 import common as cm
@@ -53,7 +53,7 @@ class Set_creater(object):
 
     def load_model(self):
         # dynamically load the model
-        module_file_path = '../model.py'
+        module_file_path = 'model.py'
         module_name = ''
         module_spec = importlib.util.spec_from_file_location(module_name, module_file_path)
         module = importlib.util.module_from_spec(module_spec)

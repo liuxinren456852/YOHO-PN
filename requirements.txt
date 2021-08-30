@@ -1,5 +1,4 @@
 numpy
-pytorch #we suggest the installation of the official website
 scipy
 matplotlib
 future-fstrings
@@ -8,4 +7,5 @@ joblib
 scikit-learn
 nibabel
 tqdm
+tensorboardX
 open3d==0.8.0.0

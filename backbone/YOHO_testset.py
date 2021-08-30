@@ -1,4 +1,5 @@
-import os
+import os,sys
+sys.path.append('../')
 import argparse
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 import time
@@ -6,7 +7,6 @@ import numpy as np
 import torch
 import shutil
 import torch.nn as nn
-import sys
 import glob
 from tqdm import tqdm
 
@@ -15,7 +15,7 @@ from tools import get_pcd, get_keypts
 from sklearn.neighbors import KDTree
 import importlib
 import open3d
-from utils.utils import transform_points,PCA_value
+from utils.utils import transform_points,PCA_value,make_non_exists_dir
 from utils.dataset import get_dataset_name
 
 
@@ -76,7 +76,7 @@ def prepare_patch(dataset, pc_id, trans_matrix,r):
 
 def generate_descriptor(model, desc_name, dataset, descpath,r):
     rotations=np.load('../group_related/Rotation.npy')#60*3*3
-    make_open3d_point_cloud(f'{descpath}/pca')
+    make_non_exists_dir(f'{descpath}/pca')
     model.eval()
     num_frag = len(dataset.pc_ids)
     num_desc = len(os.listdir(descpath))
@@ -156,8 +156,7 @@ if __name__ == '__main__':
     experiment_id = time.strftime('%m%d%H%M')
 
     # dynamically load the model
-    module_file_path = '../model.py'
-    shutil.copy2(os.path.join('.', '../../network/PointNet.py'), module_file_path)
+    module_file_path = 'model.py'
     module_name = ''
     module_spec = importlib.util.spec_from_file_location(module_name, module_file_path)
     module = importlib.util.module_from_spec(module_spec)
@@ -170,12 +169,13 @@ if __name__ == '__main__':
     all_trans_matrix = {}
     is_rotate_dataset = False
     for scene,dataset in datasets.items():
+        if scene=='wholesetname':continue
         descpath = f'../data/YOHO_PN/Testset/{dataset.name}/PN_Input_Group_feature'#YOHO-PN dir  YOHO-PN/Testset/3dmatch/scene
         if not os.path.exists(descpath):
             os.makedirs(descpath)
         start_time = time.time()
         print(f"Begin Processing {scene}")
-        generate_descriptor(model, desc_name='PointNet', dataset, descpath=descpath,r=r)
+        generate_descriptor(model, desc_name='PointNet', dataset=dataset, descpath=descpath,r=r)
         print(f"Finish in {time.time() - start_time}s")
     if is_rotate_dataset:
         np.save(f"trans_matrix", all_trans_matrix)

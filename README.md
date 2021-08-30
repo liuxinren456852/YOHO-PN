@@ -13,10 +13,10 @@ In this paper, we propose a novel local descriptor-based framework, called You O
 
 Here we offer the PointNet backbone YOMO thanks to the [Spinnet]() training codes, so the Spinnet requirements need to be met:
 
-- Ubuntu 14.04 or higher
+- Ubuntu 16.04 or higher
 - CUDA 11.1 or higher
 - Python v3.6 or higher
-- Pytorch v1.6 or higher
+- Pytorch v1.7 or higher
 - Pointnet2_ops
 
 ## Installation
@@ -26,8 +26,10 @@ Create the anaconda environment:
 ```
 conda create -n pn_yomo python=3.7
 conda activate pn_yomo
-pip install "git+git://github.com/erikwijmans/Pointnet2_PyTorch.git#egg=pointnet2_ops&subdirectory=pointnet2_ops_lib"
+conda install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=11.0 -c pytorch
 pip install -r requirements.txt
+export CUDA_HOME=/usr/local/cuda-11.1
+pip install "git+git://github.com/erikwijmans/Pointnet2_PyTorch.git#egg=pointnet2_ops&subdirectory=pointnet2_ops_lib"
 ```
 
 KNN build:
@@ -67,7 +69,9 @@ Please place the data to ```./data/origin_data``` for organizing the data struct
 
 To prepare the trainset of YOHO, run:
 '''
-python backbone/YOHO_trainset.py
+cd backbone
+python YOHO_trainset.py
+cd ..
 '''
 The trainset of YOHO will be placed to '''data/YOHO_PN/Trainset''' and '''data/YOHO_PN/valset'''.
 
@@ -88,7 +92,9 @@ With the TestData downloaded above, the test on 3DMatch and 3DLoMatch can be don
 - Prepare testset
 
 ```
-python backbone/YOHO_testset.py --dataset 3dmatch --r 0.3
+cd backbone
+python YOHO_testset.py --dataset 3dmatch --r 0.3
+cd ..
 ```
 
 - Eval the results:
@@ -110,7 +116,9 @@ With the TestData downloaded above, without any refinement of the model trained 
 - Prepare the testset
 
 ```
-python backbone/YOHO_testset.py --dataset ETH --r 1
+cd backbone
+python YOHO_testset.py --dataset ETH --r 1
+cd ..
 ```
 
 - Eval the results:
