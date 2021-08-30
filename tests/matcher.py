@@ -68,8 +68,8 @@ class matcher_dual_pca():
             pca1=np.load(f'{pca_dir}/{id1}.npy')
             feats0=np.load(f'{Feature_dir}/{id0}.npy') #5000,32,60
             feats1=np.load(f'{Feature_dir}/{id1}.npy') #5000,32,60
-            ok_mask0=np.where(pca0[:,0]>0.03)[0]
-            ok_mask1=np.where(pca1[:,0]>0.03)[0]
+            ok_mask0=np.where(pca0[:,0]>self.cfg.pca_threshold)[0]
+            ok_mask1=np.where(pca1[:,0]>self.cfg.pca_threshold)[0]
             feats0=feats0[ok_mask0]
             feats1=feats1[ok_mask1]
             feats0=np.mean(feats0,axis=-1)

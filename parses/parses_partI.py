@@ -92,6 +92,8 @@ Network_Args.add_argument("--test_network_type",type=str,default="PartI_test",
                         help="network type for test")
 Test_Args.add_argument("--test_batch_size",type=int,default=900,
                         help="TEST batch size")
+Test_Args.add_argument("--pca_threshold",type=float,default=0.03,
+                        help="the plane points threshold")
 Test_Args.add_argument("--ransac_c_inlinerdist",type=float,default=0.2,
                         help="inliner distance threshold distance for YOMO-c")
 Test_Args.add_argument("--ok_match_dist_threshold",type=float,default=0.1,

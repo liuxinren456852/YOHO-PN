@@ -4,14 +4,15 @@ In this paper, we propose a novel local descriptor-based framework, called You O
 
 ## News
 
-- 2021.7.6 The code of the YOHO is released. [Code](https://github.com/HpWang-whu/YOHO)
+- 2021.8.29 The code of the PointNet backbone YOHO is released, which is poorer but highly generalizable.
+- 2021.7.6 The code of the YOHO is released. [Code](https://github.com/HpWang-whu/YOHO), [Project page](https://hpwang-whu.github.io/YOHO/)
 
 ## Performance 
 <img src="README.assets/sendpix1.jpg" alt="sendpix1" style="zoom:50%;" />   
 
 ## Requirements
 
-Here we offer the PointNet backbone YOMO thanks to the [Spinnet]() training codes, so the Spinnet requirements need to be met:
+Here we offer the PointNet backbone YOMO thanks to the [Spinnet](https://github.com/QingyongHu/SpinNet)'s training codes, so the Spinnet requirements need to be met:
 
 - Ubuntu 16.04 or higher
 - CUDA 11.1 or higher
@@ -50,7 +51,7 @@ For the preparation of the Trainset of YOHO-PN, download [trainset](https://driv
 
 Please place the trainset to ./data following Spinnet.
 
-We offer the origin test datasets containing the point clouds (.ply) and keypoints (.txt, 5000 per point cloud) here [3dmatch/3dLomatch](https://drive.google.com/file/d/1UzGBPce5VspD2YIj7zWrrJYjsImSEc-5/view?usp=sharing) and [ETH](https://drive.google.com/file/d/1hyurp5EOzvWGFB0kOl5Qylx1xGelpxaQ/view?usp=sharing).
+We offer the origin test datasets containing the point clouds (.ply) and keypoints (.txt, 5000 per point cloud) here [3dmatch/3dLomatch](https://drive.google.com/file/d/1UzGBPce5VspD2YIj7zWrrJYjsImSEc-5/view?usp=sharing), [ETH](https://drive.google.com/file/d/1hyurp5EOzvWGFB0kOl5Qylx1xGelpxaQ/view?usp=sharing) and [WHU-TLS](https://drive.google.com/file/d/1QjlxIVMQPinNWt5LKhtaG9TTo2j3TGs_/view?usp=sharing).
 
 Please place the data to ```./data/origin_data``` for organizing the data structure as:
 
@@ -62,6 +63,10 @@ Please place the data to ```./data/origin_data``` for organizing the data struct
           - PointCloud
     - ETH
       - wood_autumn
+        - Keypoints
+        - PointCloud
+    - WHU-TLS
+      - Park
         - Keypoints
         - PointCloud
 
@@ -130,11 +135,32 @@ python Test.py --Part PartII --max_iter 1000 --dataset ETH  #YOHO-O on ETH
 All the results will be placed to ```./data/YOHO_PN```.
 
 
+## Generalize to the WHU-TLS dataset
+
+With the TestData downloaded above, without any refinement of the model trained on the indoor 3DMatch dataset, the generalization result on the outdoor large scale TLS dataset WHU-TLS can be got by:
+
+- Prepare the testset
+
+```
+cd backbone
+python YOHO_testset.py --dataset WHU-TLS --r 6
+cd ..
+```
+
+- Eval the results:
+
+```
+python Test.py --Part PartI  --max_iter 1000 --dataset WHU-TLS  --ransac_d 5 --tau_2 3 --tau_3 5  #YOHO-C on WHU-TLS
+python Test.py --Part PartII --max_iter 1000 --dataset WHU-TLS  --ransac_d 5 --tau_2 3 --tau_3 5  #YOHO-O on WHU-TLS
+```
+All the results will be placed to ```./data/YOHO_PN```.
+
+
 ## Related Projects
 
-We thanks greatly for the Spinnet PerfectMatch and Predator for the backbone and datasets.
+We thanks greatly for the Spinnet, PerfectMatch, Predator and WHU-TLS for the training code and the datasets.
 
 - [Spinnet](https://github.com/QingyongHu/SpinNet)
 - [3DSmoothNet](https://github.com/zgojcic/3DSmoothNet) 
 - [Predator](https://github.com/overlappredator/OverlapPredator) 
-
+- [WHU-TLS](https://www.sciencedirect.com/science/article/pii/S0924271620300836)

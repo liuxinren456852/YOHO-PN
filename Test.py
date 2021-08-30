@@ -45,11 +45,21 @@ args = parser.parse_args()
 sign=args.Part
 if sign=='PartI':
     config,nouse=parses_partI.get_config()
+    config.fmr_ratio=args.tau_1
+    config.ok_match_dist_threshold=args.tau_2
+    config.RR_dist_threshold=args.tau_3
+    if args.ransac_d>0:
+        config.ransac_c_inlinerdist=args.ransac_d
     config.testset_name=args.dataset
     eval_net=name2evaluator[config.evaluator](config,max_iter=args.max_iter)
     eval_net.eval()
 elif sign=='PartII':
     config,nouse=parses_partII.get_config()
+    config.fmr_ratio=args.tau_1
+    config.ok_match_dist_threshold=args.tau_2
+    config.RR_dist_threshold=args.tau_3
+    if args.ransac_d>0:
+        config.ransac_o_inlinerdist=args.ransac_d
     config.testset_name=args.dataset
     eval_net=name2evaluator[config.evaluator](config,max_iter=args.max_iter)
     eval_net.eval()

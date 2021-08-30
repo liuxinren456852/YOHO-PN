@@ -124,18 +124,6 @@ class ThrDMatchPartDataset(EvalDataset):
 #Get dataset items with the dataset name(output: dict)
 def get_dataset_name(dataset_name,origin_data_dir):
 
-    if dataset_name=='demo':
-        datasets={}
-        datasets['wholesetname']=f'{dataset_name}'
-        scenes=['kitchen']
-        stationnums=[2]
-        for i in range(len(scenes)):
-            root_dir=f'{origin_data_dir}/{dataset_name}/'+scenes[i]
-            datasets[scenes[i]]=ThrDMatchPartDataset(root_dir,stationnums[i])
-            datasets[scenes[i]].name=f'{dataset_name}/{scenes[i]}'
-        return datasets
-
-
     if dataset_name=='3dmatch':
         datasets={}
         datasets['wholesetname']=f'{dataset_name}'
@@ -150,19 +138,6 @@ def get_dataset_name(dataset_name,origin_data_dir):
             datasets[scenes[i]]=ThrDMatchPartDataset(root_dir,stationnums[i])
             datasets[scenes[i]].name=f'{dataset_name}/{scenes[i]}'
         return datasets
-
-    if dataset_name=='mvp_vals':
-        datasets={}
-        datasets['wholesetname']=f'{dataset_name}'
-        scenes=np.arange(200)
-        #stationnums=np.ones([1200])*2
-
-        for i in range(len(scenes)):
-            root_dir=f'{origin_data_dir}/{dataset_name}/'+str(scenes[i])
-            datasets[scenes[i]]=ThrDMatchPartDataset(root_dir,2)
-            datasets[scenes[i]].name=f'{dataset_name}/{str(scenes[i])}'
-        return datasets
-
 
     if dataset_name=='3dLomatch':
         datasets={}
@@ -190,17 +165,19 @@ def get_dataset_name(dataset_name,origin_data_dir):
             datasets[scenes[i]]=ThrDMatchPartDataset(root_dir,stationnums[i])
             datasets[scenes[i]].name=f'{dataset_name}/{scenes[i]}'
         return datasets
+   
 
-    if dataset_name=='ETH_rot':
+    if dataset_name=='WHU-TLS':
         datasets={}
         datasets['wholesetname']=f'{dataset_name}'
-        scenes=['gazebo_summer','gazebo_winter','wood_autumn','wood_summer']
-        stationnums=[32,31,32,37]
+        scenes=['Park','Mountain','Campus','RiverBank','UndergroundExcavation','Tunnel']
+        stationnums=[32,6,10,7,12,7]
         for i in range(len(scenes)):
             root_dir=f'{origin_data_dir}/{dataset_name}/'+scenes[i]
             datasets[scenes[i]]=ThrDMatchPartDataset(root_dir,stationnums[i])
             datasets[scenes[i]].name=f'{dataset_name}/{scenes[i]}'
         return datasets
+
 
 
     if dataset_name=='3dmatch_train':
