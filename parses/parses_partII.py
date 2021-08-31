@@ -97,7 +97,7 @@ Test_Args.add_argument("--test_batch_size",type=int,default=1000,
                         help="TEST batch size")
 Test_Args.add_argument("--pca_threshold",type=float,default=0.03,
                         help="the plane points threshold")
-Test_Args.add_argument("--ransac_c_inlinerdist",type=float,default=0.22,
+Test_Args.add_argument("--ransac_o_inlinerdist",type=float,default=0.22,
                         help="inliner distance threshold distance for YOMO-c")
 Test_Args.add_argument("--ok_match_dist_threshold",type=float,default=0.1,
                         help="The t error to determain the true transformation")

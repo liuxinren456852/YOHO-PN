@@ -150,8 +150,8 @@ cd ..
 - Eval the results:
 
 ```
-python Test.py --Part PartI  --max_iter 1000 --dataset WHU-TLS  --ransac_d 5 --tau_2 3 --tau_3 5  #YOHO-C on WHU-TLS
-python Test.py --Part PartII --max_iter 1000 --dataset WHU-TLS  --ransac_d 5 --tau_2 3 --tau_3 5  #YOHO-O on WHU-TLS
+python Test.py --Part PartI  --max_iter 1000 --dataset WHU-TLS  --ransac_d 1 --tau_2 2 --tau_3 3  #YOHO-C on WHU-TLS
+python Test.py --Part PartII --max_iter 1000 --dataset WHU-TLS  --ransac_d 1 --tau_2 2 --tau_3 3  #YOHO-O on WHU-TLS
 ```
 All the results will be placed to ```./data/YOHO_PN```.
 
