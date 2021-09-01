@@ -73,12 +73,12 @@ Please place the data to ```./data/origin_data``` for organizing the data struct
 ## Train
 
 To prepare the trainset of YOHO, run:
-'''
+```
 cd backbone
 python YOHO_trainset.py
 cd ..
-'''
-The trainset of YOHO will be placed to '''data/YOHO_PN/Trainset''' and '''data/YOHO_PN/valset'''.
+```
+The trainset of YOHO will be placed to ```data/YOHO_PN/Trainset``` and ```data/YOHO_PN/valset```.
 
 
 The training process of YOHO is two-stage, you can run with by the commands sequentially:
